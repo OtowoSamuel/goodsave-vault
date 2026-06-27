@@ -60,15 +60,15 @@ function HeroSignal() {
 
       <div className="relative z-10 mt-4 grid grid-cols-3 gap-2 sm:gap-3">
         <div className="surface-card rounded-xl p-3 min-w-0">
-          <p className="text-[11px] uppercase tracking-[0.16em] text-slate-500 font-semibold">Starting balance</p>
+          <p className="text-[11px] uppercase tracking-[0.14em] text-slate-400 font-semibold">Starting balance</p>
           <p className="mt-2 text-sm sm:text-base md:text-lg text-white font-mono-tabular leading-snug break-normal whitespace-normal">Stable</p>
         </div>
         <div className="surface-card rounded-xl p-3 min-w-0">
-          <p className="text-[11px] uppercase tracking-[0.16em] text-slate-500 font-semibold">Lock window</p>
+          <p className="text-[11px] uppercase tracking-[0.14em] text-slate-400 font-semibold">Lock window</p>
           <p className="mt-2 text-sm sm:text-base md:text-lg text-white font-mono-tabular leading-snug break-normal whitespace-normal">30d</p>
         </div>
         <div className="surface-card rounded-xl p-3 min-w-0">
-          <p className="text-[11px] uppercase tracking-[0.16em] text-slate-500 font-semibold">On-chain</p>
+          <p className="text-[11px] uppercase tracking-[0.14em] text-slate-400 font-semibold">On-chain</p>
           <p className="mt-2 text-sm sm:text-base md:text-lg text-white/95 font-mono-tabular leading-snug break-normal whitespace-normal">Transparent</p>
         </div>
       </div>
@@ -89,7 +89,7 @@ function App() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] rounded-full bg-emerald-500/10 blur-[120px] pointer-events-none" />
 
       {/* Sticky Glass Header */}
-      <header className="sticky top-0 z-50 backdrop-blur-md bg-slate-950/50 border-b border-white/5 flex justify-between items-center px-8 py-5">
+      <header className="sticky top-0 z-50 backdrop-blur-md bg-slate-950/50 border-b border-white/5 flex justify-between items-center px-4 sm:px-6 lg:px-8 py-4 sm:py-5">
         <div className="flex items-center gap-3">
           <div className="rounded-full bg-black/20 border border-white/10 p-1 shadow-[0_0_28px_rgba(34,197,94,0.18)]">
             <GoodSaveLogo iconOnly className="h-8" />
@@ -115,10 +115,10 @@ function App() {
         </div>
       </header>
 
-      <main className="relative z-10 max-w-6xl mx-auto pt-20 pb-24 px-6 flex flex-col gap-12 md:pt-24">
+      <main className="relative z-10 max-w-6xl mx-auto pt-16 sm:pt-20 pb-16 sm:pb-24 px-4 sm:px-6 flex flex-col gap-8 sm:gap-12 md:pt-20">
         
         {/* Hero Section */}
-        <section className="grid lg:grid-cols-[1.08fr_0.92fr] gap-10 items-center md:pt-2">
+        <section className="grid lg:grid-cols-[1.08fr_0.92fr] gap-6 lg:gap-12 items-start lg:items-center">
           <div className="text-left max-w-2xl">
             <div className="group relative mb-6 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-white text-sm font-semibold tracking-wide inline-flex items-center gap-2 overflow-visible surface-card">
               <svg className="w-4 h-4 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -141,13 +141,13 @@ function App() {
               </span>
               <ApyTooltip anchorRef={apyInfoRef} open={showApyTooltip} content={APY_TOOLTIP_COPY} />
             </div>
-            <h2 className="font-display text-5xl md:text-7xl tracking-tight text-white mb-6 leading-[0.95] max-w-xl">
+            <h2 className="font-display text-[clamp(2.4rem,5vw,4.5rem)] tracking-tight text-white mb-5 leading-[1.02] max-w-xl">
               Optimize yield on your <span className="text-[color:var(--color-accent-growth)]">GoodDollars</span>
             </h2>
-            <p className="font-body text-lg md:text-xl text-slate-300 mb-8 leading-relaxed max-w-xl">
+            <p className="font-body text-base sm:text-lg md:text-xl text-slate-200 mb-8 leading-[1.55] max-w-xl">
               Lock your G$ for custom durations and earn a predictable return, backed by Aave V3. Zero gas fees, instant deposits.
             </p>
-            <div className="flex flex-wrap gap-3 text-xs uppercase tracking-[0.18em] text-slate-500 font-semibold">
+            <div className="flex flex-wrap gap-2 sm:gap-3 text-xs uppercase tracking-[0.16em] text-slate-400 font-semibold">
               <span className="px-3 py-2 rounded-full bg-white/5 border border-white/10">Variable APY</span>
               <span className="px-3 py-2 rounded-full bg-white/5 border border-white/10 text-slate-300">30-day lock</span>
               <span className="px-3 py-2 rounded-full bg-white/5 border border-white/10">No gas fees</span>
@@ -160,23 +160,23 @@ function App() {
         </section>
 
         {/* Tab Navigation */}
-        <div className="flex justify-center mb-8">
-          <div className="bg-white/5 p-1.5 rounded-2xl flex gap-2 border border-white/10 backdrop-blur-md">
+        <div className="flex justify-center mb-6 sm:mb-8 overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 pb-0.5">
+          <div className="bg-white/5 p-1.5 rounded-2xl flex gap-1 sm:gap-2 border border-white/10 backdrop-blur-md shrink-0">
             <button 
               onClick={() => setActiveTab('dashboard')}
-              className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 cursor-pointer ${activeTab === 'dashboard' ? 'bg-white/10 border border-white/10 text-white shadow-none' : 'text-slate-400 hover:text-white transition'}`}
+              className={`px-3 sm:px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 cursor-pointer whitespace-nowrap ${activeTab === 'dashboard' ? 'bg-white/10 border border-white/10 text-white shadow-none' : 'text-slate-400 hover:text-white transition'}`}
             >
               Vault Dashboard
             </button>
             <button 
               onClick={() => setActiveTab('rewards')}
-              className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 cursor-pointer ${activeTab === 'rewards' ? 'bg-white/10 border border-white/10 text-white shadow-none' : 'text-slate-400 hover:text-white transition'}`}
+              className={`px-3 sm:px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 cursor-pointer whitespace-nowrap ${activeTab === 'rewards' ? 'bg-white/10 border border-white/10 text-white shadow-none' : 'text-slate-400 hover:text-white transition'}`}
             >
               Saver Rewards
             </button>
             <button 
               onClick={() => setActiveTab('projections')}
-              className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 cursor-pointer ${activeTab === 'projections' ? 'bg-white/10 border border-white/10 text-white shadow-none' : 'text-slate-400 hover:text-white transition'}`}
+              className={`px-3 sm:px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 cursor-pointer whitespace-nowrap ${activeTab === 'projections' ? 'bg-white/10 border border-white/10 text-white shadow-none' : 'text-slate-400 hover:text-white transition'}`}
             >
               Yield Projections
             </button>
@@ -185,7 +185,7 @@ function App() {
 
         {/* Dynamic Content */}
         {activeTab === 'dashboard' && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8 items-stretch animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="lg:col-span-5 w-full h-full">
               <DepositForm
                 amount={amount}
@@ -204,8 +204,8 @@ function App() {
         {activeTab === 'rewards' && (
           <div className="w-full animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold text-white mb-2">Saver Tiers</h3>
-              <p className="text-slate-400">Level up your badges and unlock APY bonuses by successfully completing lock terms.</p>
+              <h3 className="text-2xl sm:text-3xl font-display tracking-tight text-white mb-2">Saver Tiers</h3>
+              <p className="text-slate-300 text-base">Level up your badges and unlock APY bonuses by completing lock terms.</p>
             </div>
             <BadgeCard />
           </div>

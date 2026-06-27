@@ -55,6 +55,7 @@ export function DepositForm({
   const decimals = Number(tokenDecimals ?? 18)
   const parsedAmount = amount ? parseUnits(amount, decimals) : 0n
   const needsApproval = isConnected && !!amount && (allowance as bigint ?? 0n) < parsedAmount
+  const hasZeroBalance = isConnected && (!balance || (balance as bigint) === 0n)
 
   // Estimated return calculation
   const estimatedReturn = (() => {
@@ -148,7 +149,7 @@ export function DepositForm({
         </h2>
         
         <div className="mb-4 flex justify-between items-center text-sm">
-          <span className="text-[10px] font-semibold tracking-wider text-slate-500 uppercase">Available Balance</span>
+          <span className="text-[11px] font-semibold tracking-wider text-slate-400 uppercase">Available Balance</span>
           <div className="flex items-center gap-2">
             <span className="text-white font-mono-tabular bg-white/[0.05] px-3 py-1 rounded-full border border-white/5">
               {balance ? formatAmount(Number(formatUnits(balance as bigint, decimals))) : '0.00'} G$
@@ -219,7 +220,7 @@ export function DepositForm({
 
           <div className="surface-card rounded-[1.35rem] p-4">
             <div className="flex justify-between mb-3 text-sm">
-              <span className="text-[10px] font-semibold tracking-wider text-slate-500 uppercase">Lock Duration</span>
+              <span className="text-[11px] font-semibold tracking-wider text-slate-400 uppercase">Lock Duration</span>
               <span className="text-white font-semibold font-mono-tabular">{durationDays} Days</span>
             </div>
             <input
@@ -249,9 +250,9 @@ export function DepositForm({
           </div>
 
           <button
-            onClick={!isConnected ? openConnectModal : needsApproval ? handleApprove : () => setShowDepositModal(true)}
-            disabled={isConnected && !amount || isApproving}
-            className="w-full py-4 mt-2 bg-[color:var(--color-accent-growth)] hover:bg-[color:var(--color-accent-growth-hover)] text-white font-bold rounded-[1rem] shadow-[0_14px_36px_rgba(16,185,129,0.22)] hover:shadow-[0_18px_44px_rgba(16,185,129,0.32)] transition-all duration-300 disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed cursor-pointer transform hover:-translate-y-0.5 disabled:hover:translate-y-0 flex items-center justify-center gap-2 font-body"
+            onClick={!isConnected ? openConnectModal : hasZeroBalance && !amount ? () => window.open('https://wallet.gooddollar.org', '_blank') : needsApproval ? handleApprove : () => setShowDepositModal(true)}
+            disabled={isApproving || (isConnected && !amount && !hasZeroBalance)}
+            className="w-full min-h-[52px] py-3.5 mt-2 bg-[color:var(--color-accent-growth)] hover:bg-[color:var(--color-accent-growth-hover)] text-white font-bold rounded-[1rem] shadow-[0_14px_36px_rgba(16,185,129,0.22)] hover:shadow-[0_18px_44px_rgba(16,185,129,0.32)] transition-all duration-300 disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed cursor-pointer transform hover:-translate-y-0.5 disabled:hover:translate-y-0 flex items-center justify-center gap-2 font-body"
           >
             {!isConnected && 'Connect Wallet'}
             {isConnected && isApproving && (
@@ -270,7 +271,13 @@ export function DepositForm({
               </>
             )}
             {isConnected && !isApproving && !needsApproval && amount && 'Deposit & Lock'}
-            {isConnected && !isApproving && !needsApproval && !amount && 'Enter Amount'}
+            {isConnected && !isApproving && !needsApproval && !amount && hasZeroBalance && (
+              <span className="flex items-center gap-2">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                Get G$ to Deposit
+              </span>
+            )}
+            {isConnected && !isApproving && !needsApproval && !amount && !hasZeroBalance && 'Enter Amount'}
           </button>
         </div>
       </div>

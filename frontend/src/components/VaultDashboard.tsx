@@ -133,7 +133,7 @@ export function VaultDashboard() {
 
   if (!address || principalAssets === 0n) {
     return (
-      <div className="surface-card rounded-[1.75rem] p-8 relative overflow-hidden min-h-[400px] h-full flex items-center justify-center group">
+      <div className="surface-card rounded-[1.75rem] p-5 sm:p-8 relative overflow-hidden min-h-[360px] sm:min-h-[400px] h-full flex items-center justify-center group">
         <div className="absolute inset-0 p-8 blur-md opacity-25 pointer-events-none flex flex-col justify-between grayscale">
           <div>
             <div className="flex justify-between items-center mb-6">
@@ -179,7 +179,7 @@ export function VaultDashboard() {
           {!address && (
             <button
               onClick={openConnectModal}
-              className="w-full px-6 py-3 bg-emerald-500 hover:bg-emerald-400 rounded-xl text-slate-950 font-bold transition-all duration-300 cursor-pointer shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:-translate-y-0.5"
+              className="w-full min-h-[48px] px-6 py-3.5 bg-emerald-500 hover:bg-emerald-400 rounded-xl text-slate-950 font-bold transition-all duration-300 cursor-pointer shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:-translate-y-0.5"
             >
               Connect Wallet
             </button>
@@ -195,7 +195,7 @@ export function VaultDashboard() {
 
   return (
     <>
-      <div className="surface-card rounded-[1.75rem] p-8 relative overflow-hidden group h-full flex flex-col">
+      <div className="surface-card rounded-[1.75rem] p-5 sm:p-8 relative overflow-hidden group h-full flex flex-col">
         <div className="absolute -inset-1 bg-gradient-to-l from-[color:var(--color-accent-growth)]/10 to-white/5 rounded-[1.35rem] blur opacity-0 group-hover:opacity-100 transition duration-700 pointer-events-none"></div>
 
         <div className="relative flex flex-col flex-1">
@@ -216,7 +216,7 @@ export function VaultDashboard() {
 
           {isLocked && (
             <div className="mb-5">
-              <div className="flex justify-between text-[10px] font-semibold tracking-wider text-slate-500 uppercase mb-2 font-mono-tabular tabular-nums">
+              <div className="flex justify-between text-[11px] font-semibold tracking-wider text-slate-400 uppercase mb-2 font-mono-tabular tabular-nums">
                 <span>{Math.round(progress)}% elapsed</span>
                 <span className="text-slate-400">Unlocks {unlockDateLabel}</span>
               </div>
@@ -226,25 +226,25 @@ export function VaultDashboard() {
             </div>
           )}
 
-          <div className="grid grid-cols-2 gap-3 mb-0">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-0">
             <div className="surface-elevated rounded-[1.35rem] p-4 hover:border-white/20 transition-colors">
-              <div className="text-[10px] font-semibold tracking-wider text-slate-500 uppercase mb-2">Principal</div>
-              <div className="text-2xl font-mono-tabular tabular-nums font-bold text-white">{formatAmount(principal)} <span className="text-base text-slate-500">G$</span></div>
+              <div className="text-[11px] font-semibold tracking-wider text-slate-400 uppercase mb-2">Principal</div>
+              <div className="text-xl sm:text-2xl font-mono-tabular tabular-nums font-bold text-white">{formatAmount(principal)} <span className="text-sm sm:text-base text-slate-400">G$</span></div>
             </div>
             <div className="surface-card rounded-[1.35rem] p-4 relative overflow-hidden border-white/10">
               <div className="absolute top-0 right-0 w-16 h-16 bg-[color:var(--color-accent-growth)]/10 rounded-full blur-xl"></div>
               <div className="relative">
-                <div className="text-[10px] font-semibold tracking-wider text-slate-500 uppercase mb-2">Yield Accrued</div>
-                <div className="text-2xl font-mono-tabular tabular-nums font-bold text-[color:var(--color-accent-growth)]">+{expectedYield.toLocaleString('en-US', { minimumFractionDigits: 6, maximumFractionDigits: 6 })} <span className="text-base text-[color:var(--color-accent-growth)]/70">G$</span></div>
+                <div className="text-[11px] font-semibold tracking-wider text-slate-400 uppercase mb-2">Yield Accrued</div>
+                <div className="text-xl sm:text-2xl font-mono-tabular tabular-nums font-bold text-[color:var(--color-accent-growth)]">+{expectedYield.toLocaleString('en-US', { minimumFractionDigits: 6, maximumFractionDigits: 6 })} <span className="text-sm sm:text-base text-[color:var(--color-accent-growth)]/70">G$</span></div>
                 <p className="mt-1 text-[11px] text-slate-400 font-body">Rate is variable and may change daily.</p>
               </div>
             </div>
           </div>
 
           <div className="border-t border-white/5 pt-4 mt-4 flex justify-between gap-4 flex-wrap">
-            <span className="text-xs font-mono-tabular tabular-nums text-slate-500">Strategy: <span className="text-slate-400">Aave V3 Smart Vault</span></span>
-            <span className="text-xs font-mono-tabular tabular-nums text-slate-500">
-              TVL: <span className="text-slate-400">{formatAmount(totalAssetsValue, 0)} / {formatAmount(globalCapValue, 0)} G$ cap</span>
+            <span className="text-xs font-mono-tabular tabular-nums text-slate-400">Strategy: <span className="text-slate-300">Aave V3 Smart Vault</span></span>
+            <span className="text-xs font-mono-tabular tabular-nums text-slate-400">
+              TVL: <span className="text-slate-300">{formatAmount(totalAssetsValue, 0)} / {formatAmount(globalCapValue, 0)} G$ cap</span>
             </span>
           </div>
 
@@ -252,7 +252,7 @@ export function VaultDashboard() {
             {isLocked ? (
               <button
                 onClick={() => setShowEarlyWithdrawModal(true)}
-                className="w-full py-4 bg-transparent hover:bg-[color:var(--color-accent-destructive)]/8 text-rose-400/80 hover:text-rose-400 font-medium rounded-[1rem] transition-colors duration-300 border border-white/5 hover:border-white/10 cursor-pointer text-sm font-body"
+                className="w-full min-h-[48px] py-3.5 bg-transparent hover:bg-[color:var(--color-accent-destructive)]/8 text-rose-400/80 hover:text-rose-400 font-medium rounded-[1rem] transition-colors duration-300 border border-white/5 hover:border-white/10 cursor-pointer text-sm font-body"
               >
                 Early Withdraw (Forfeit Yield)
               </button>
