@@ -95,7 +95,7 @@ function App() {
           </h1>
         </div>
         <div className="flex items-center justify-end min-h-10">
-          <ConnectButton chainStatus="none" />
+          <ConnectButton />
         </div>
       </header>
 
