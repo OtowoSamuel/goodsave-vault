@@ -6,6 +6,7 @@ import { VAULT_ADDRESS, GDOLLAR_ADDRESS, gDollarAbi } from '../config/contracts'
 import { useToast } from '../context/ToastContext'
 import { ConfirmModal } from './ConfirmModal'
 import { DISPLAY_APY_PERCENT, formatAmount } from '../hooks/useVaultSession'
+import { addTokenToWallet } from '../utils/addToken'
 
 interface DepositFormProps {
   amount: string
@@ -85,6 +86,17 @@ export function DepositForm({
     }
   }
 
+  const handleAddToken = async () => {
+    const added = await addTokenToWallet({
+      address: GDOLLAR_ADDRESS,
+      symbol: 'G$',
+      decimals,
+      image: 'https://raw.githubusercontent.com/GoodDollar/GoodProtocol/master/assets/logo.png',
+    })
+    if (added) showToast('G$ added to your wallet!')
+    else showToast('Could not add token — please add it manually.', 'error')
+  }
+
   const handleDeposit = async () => {
     if (!amount || !address) return;
     try {
@@ -101,9 +113,16 @@ export function DepositForm({
       showToast('Deposit successful! Your G$ is now locked and earning yield.')
       onAmountChange('')
       refetchBalance()
-    } catch (e) {
+    } catch (e: unknown) {
       console.error(e)
-      showToast('Deposit failed. Please check console for details.', 'error')
+      const msg = e instanceof Error ? e.message : String(e)
+      if (msg.includes('SF_TOKEN_MOVE_INSUFFICIENT_BALANCE') || msg.includes('insufficient')) {
+        showToast('You don\'t have enough G$. Claim or swap for G$ first.', 'error')
+      } else if (msg.includes('User rejected') || msg.includes('user rejected')) {
+        showToast('Transaction cancelled.', 'error')
+      } else {
+        showToast('Deposit failed. Please check console for details.', 'error')
+      }
     }
   }
 
@@ -130,10 +149,34 @@ export function DepositForm({
         
         <div className="mb-4 flex justify-between items-center text-sm">
           <span className="text-[10px] font-semibold tracking-wider text-slate-500 uppercase">Available Balance</span>
-          <span className="text-white font-mono-tabular bg-white/[0.05] px-3 py-1 rounded-full border border-white/5">
-            {balance ? formatAmount(Number(formatUnits(balance as bigint, decimals))) : '0.00'} G$
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="text-white font-mono-tabular bg-white/[0.05] px-3 py-1 rounded-full border border-white/5">
+              {balance ? formatAmount(Number(formatUnits(balance as bigint, decimals))) : '0.00'} G$
+            </span>
+            <button
+              onClick={handleAddToken}
+              title="Add G$ to your wallet"
+              className="text-[10px] font-semibold text-emerald-400 hover:text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/15 border border-emerald-500/20 px-2 py-1 rounded-full transition-colors cursor-pointer"
+            >
+              + Add G$
+            </button>
+          </div>
         </div>
+
+        {isConnected && (!balance || (balance as bigint) === 0n) && (
+          <div className="mb-4 flex items-start gap-3 rounded-[1rem] border border-amber-500/20 bg-amber-500/8 p-3 text-sm">
+            <svg className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" /></svg>
+            <div>
+              <p className="text-amber-300 font-semibold font-body">No G$ in your wallet</p>
+              <p className="text-amber-200/70 text-xs mt-0.5 font-body">You need GoodDollar (G$) tokens to deposit. Claim your daily UBI or swap for G$.</p>
+              <div className="flex gap-2 mt-2">
+                <a href="https://wallet.gooddollar.org" target="_blank" rel="noreferrer" className="text-xs font-semibold text-amber-300 hover:text-amber-200 underline">Claim G$ (UBI)</a>
+                <span className="text-amber-500/40">·</span>
+                <a href="https://app.uniswap.org/#/swap?outputCurrency=0x62B8B11039FcfE5aB0C56E502b1C372A3d2a9c7A&chain=celo" target="_blank" rel="noreferrer" className="text-xs font-semibold text-amber-300 hover:text-amber-200 underline">Swap for G$</a>
+              </div>
+            </div>
+          </div>
+        )}
 
         <div className="flex flex-col gap-6 flex-1">
           {/* Inner Well */}

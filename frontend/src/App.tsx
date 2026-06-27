@@ -4,9 +4,12 @@ import { DepositForm } from './components/DepositForm'
 import { BadgeCard } from './components/BadgeCard'
 import { ProjectionChart } from './components/ProjectionChart'
 import { useRef, useState } from 'react'
+import { useChainId } from 'wagmi'
 import { APY_BADGE_COPY, APY_TOOLTIP_COPY, DISPLAY_APY_PERCENT } from './hooks/useVaultSession'
 import { ApyTooltip } from './components/ApyTooltip'
 import GoodSaveLogo from './components/GoodSaveLogo'
+import { explorerAddressUrl, getExplorer } from './utils/explorer'
+import { VAULT_ADDRESS } from './config/contracts'
 
 function HeroSignal() {
   const spark = [18, 26, 21, 33, 29, 40, 37, 48, 44, 56]
@@ -74,6 +77,7 @@ function HeroSignal() {
 }
 
 function App() {
+  const chainId = useChainId()
   const [activeTab, setActiveTab] = useState<'dashboard' | 'rewards' | 'projections'>('dashboard')
   const [amount, setAmount] = useState('')
   const [durationDays, setDurationDays] = useState(30)
@@ -96,9 +100,10 @@ function App() {
         </div>
         <div className="flex items-center justify-end gap-3 min-h-10 flex-wrap">
           <a
-            href="https://etherscan.io/address/0x5Abcba0F71915a15ae0b2C437F0BC2c503568349"
+            href={explorerAddressUrl(chainId, VAULT_ADDRESS)}
             target="_blank"
             rel="noreferrer"
+            title={`View on ${getExplorer(chainId).name}`}
             className="hidden sm:flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1.5 text-xs font-semibold text-emerald-300 font-mono-tabular tabular-nums hover:bg-emerald-500/15 hover:border-emerald-400/30 transition-colors"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />

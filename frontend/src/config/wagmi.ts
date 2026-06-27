@@ -14,7 +14,7 @@ const celoMainnet = defineChain({
     default: { http: ['https://forno.celo.org'] },
   },
   blockExplorers: {
-    default: { name: 'Etherscan', url: 'https://etherscan.io/apis?id=42220' },
+    default: { name: 'Celoscan', url: 'https://celoscan.io' },
   },
 });
 
