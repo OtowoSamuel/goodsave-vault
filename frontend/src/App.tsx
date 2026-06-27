@@ -10,6 +10,7 @@ import { ApyTooltip } from './components/ApyTooltip'
 import GoodSaveLogo from './components/GoodSaveLogo'
 import { explorerAddressUrl, getExplorer } from './utils/explorer'
 import { VAULT_ADDRESS } from './config/contracts'
+import { Analytics } from '@vercel/analytics/react'
 
 function HeroSignal() {
   const spark = [18, 26, 21, 33, 29, 40, 37, 48, 44, 56]
@@ -217,6 +218,7 @@ function App() {
           </div>
         )}
       </main>
+      <Analytics />
     </div>
   )
 }
