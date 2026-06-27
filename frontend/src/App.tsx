@@ -58,15 +58,15 @@ function HeroSignal() {
       <div className="relative z-10 mt-4 grid grid-cols-3 gap-2 sm:gap-3">
         <div className="surface-card rounded-xl p-3 min-w-0">
           <p className="text-[11px] uppercase tracking-[0.16em] text-slate-500 font-semibold">Starting balance</p>
-          <p className="mt-2 text-sm sm:text-base md:text-lg text-white font-mono-tabular leading-tight break-words">Stable</p>
+          <p className="mt-2 text-sm sm:text-base md:text-lg text-white font-mono-tabular leading-snug break-normal whitespace-normal">Stable</p>
         </div>
         <div className="surface-card rounded-xl p-3 min-w-0">
           <p className="text-[11px] uppercase tracking-[0.16em] text-slate-500 font-semibold">Lock window</p>
-          <p className="mt-2 text-sm sm:text-base md:text-lg text-white font-mono-tabular leading-tight break-words">30d</p>
+          <p className="mt-2 text-sm sm:text-base md:text-lg text-white font-mono-tabular leading-snug break-normal whitespace-normal">30d</p>
         </div>
         <div className="surface-card rounded-xl p-3 min-w-0">
           <p className="text-[11px] uppercase tracking-[0.16em] text-slate-500 font-semibold">On-chain</p>
-          <p className="mt-2 text-sm sm:text-base md:text-lg text-white font-mono-tabular leading-tight break-words">Transparent</p>
+          <p className="mt-2 text-sm sm:text-base md:text-lg text-white/95 font-mono-tabular leading-snug break-normal whitespace-normal">Transparent</p>
         </div>
       </div>
     </div>
@@ -95,12 +95,17 @@ function App() {
           </h1>
         </div>
         <div className="flex items-center justify-end gap-3 min-h-10 flex-wrap">
-          <div className="hidden sm:flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1.5 text-xs font-semibold text-emerald-300 font-mono-tabular tabular-nums">
+          <a
+            href="https://etherscan.io/address/0x5Abcba0F71915a15ae0b2C437F0BC2c503568349"
+            target="_blank"
+            rel="noreferrer"
+            className="hidden sm:flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1.5 text-xs font-semibold text-emerald-300 font-mono-tabular tabular-nums hover:bg-emerald-500/15 hover:border-emerald-400/30 transition-colors"
+          >
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
             Mainnet
             <span className="text-emerald-200/70">Vault</span>
             <span className="text-white/80">0x5Abc...8349</span>
-          </div>
+          </a>
           <ConnectButton />
         </div>
       </header>
