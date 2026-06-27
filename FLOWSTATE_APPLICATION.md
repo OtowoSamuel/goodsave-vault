@@ -1,53 +1,62 @@
-![logo](https://flowstate.network/logo-blue.svg)![Flow State](https://flowstate.network/wordmark.svg)
+# GoodSave (GoodBuilders Season 4)
 
-## GoodBuilders Season 4
-New Project
+## Summary
+GoodSave is a permissionless vault that lets users deposit and lock GoodDollar (G$) for customizable terms to earn a variable APY sourced from Aave V3. The frontend provides gasless UX, lock-duration controls, and yield projections.
 
-[![Bullet Point](https://flowstate.network/dot-filled.svg)Application](https://flowstate.network/flow-councils/application/42220/0x582e3314d4ef56c18930acb10bb64313525e7820/draft_7a3940d4205c)
+## Links
+- Website / Demo: https://goodsave-vault.vercel.app
+- GitHub repo: https://github.com/OtowoSamuel/goodsave-vault
+- Flow State application draft: https://flowstate.network/flow-councils/application/42220/0x582e3314d4ef56c18930acb10bb64313525e7820/draft_7a3940d4205c
 
-Complete your profile (display name & email) to auto-fill contact info across applications. [Go to profile](https://flowstate.network/profile)
-
-[Project](https://flowstate.network/flow-councils/application/42220/0x582e3314d4ef56c18930acb10bb64313525e7820/draft_7a3940d4205c#)
-[Round](https://flowstate.network/flow-councils/application/42220/0x582e3314d4ef56c18930acb10bb64313525e7820/draft_7a3940d4205c#)
-[Attestation](https://flowstate.network/flow-councils/application/42220/0x582e3314d4ef56c18930acb10bb64313525e7820/draft_7a3940d4205c#)
+---
 
 #### 1. Admin
-Project Name*
-Manager Addresses*All managers can make changes to the project including changing the funding address. Your signed-in address is locked as the primary manager.
+- Project Name*: GoodSave (GoodBuilders Season 4)
+- Manager Addresses*: PLEASE REPLACE with the EOA(s) you want as managers (example format: 0x1234...abcd)
+- Default Funding Address*: PLEASE REPLACE with the EOA or Safe address to receive funding (e.g. a multisig or Gnosis Safe)
 
-Default Funding Address*Set an EOA or Safe address for ongoing funding opportunities outside of sponsored rounds.
+---
 
 #### 2. Basics
-Description*WritePreview
+- Description*:
+	GoodSave makes it simple to grow G$ holdings by locking tokens into a transparent, auditable vault backed by Aave V3 strategies. Users choose a lock duration, preview projected returns, and deposit with a gasless-friendly frontend.
+- Logo*: upload a 1:1 image (recommend: /public/assets/logo.png)
+- Banner*: upload a 3:1 image (recommend: /public/assets/banner.png)
+- Website*: https://goodsave-vault.vercel.app
+- Demo/Application Link: https://goodsave-vault.vercel.app
 
-0/5000 characters (200 min.)
-
-Logo* (1:1 Aspect Ratio, Max 256KB)
-
-Banner* (3:1 Aspect Ratio, Max 1MB)
-
-Website*
-Demo/Application Link
+---
 
 #### 3. Social
-X/Twitter
-Farcaster
-Telegram Group
-Discord Channel
-Karma Profile
-Gardens Pool
+- Twitter / X: https://x.com/OtowoSamuel (replace if different)
+- Farcaster: (add Farcaster handle if available)
+- Telegram Group: (add link)
+- Discord: (add invite)
+- Karma / Gardens Pool: (add links if used)
+
+---
 
 #### 4. Technical
-Github Repositories*
+- GitHub Repositories*:
+	- https://github.com/OtowoSamuel/goodsave-vault
+- Smart Contracts (Mainnet / Celo)
+	- GoodSaveVault: 0x5Abcba0F71915a15ae0b2C437F0BC2c503568349
+		- Etherscan: https://etherscan.io/address/0x5Abcba0F71915a15ae0b2C437F0BC2c503568349
+	- GoodSaveStream: 0xd561e7431059160f49310138a404b0cfaa1c44cb
+		- Etherscan: https://etherscan.io/address/0xd561e7431059160f49310138a404b0cfaa1c44cb
+	- GoodSaveStrategy: 0x9893db0eeaa7612fb7f2cbb93f5b425a5ab579f3
+		- Etherscan: https://etherscan.io/address/0x9893db0eeaa7612fb7f2cbb93f5b425a5ab579f3
 
-Smart ContractsAdd the contracts associated to your project for metrics evaluation. If not deployed yet, make sure to add them & notify round admins when available.
+Notes: these contracts were deployed and verified; include them in the Flow State form for metrics and verification.
+
+---
 
 #### 5. Additional
-Other Links
+- Other Links:
+	- Deployment notes: contracts/docs/MainnetDeployment.md
+	- Broadcast artifact: contracts/broadcast/DeployMainnet.s.sol/42220/run-latest.json
 
-![Logo](https://flowstate.network/logo-light.svg)![Flow State](https://flowstate.network/wordmark.svg)
-[Flow Splitter](https://flowstate.network/flow-splitters)[Flow Council](https://flowstate.network/flow-councils)[Flow QF](https://docs.flowstate.network/platform/streaming-qf/)[Flow Caster](https://farcaster.xyz/miniapps/0EyeQpCD0lSP/flowcaster)
-[Docs](https://docs.flowstate.network/)[Github](https://github.com/flow-state-coop)[Farcaster](https://farcaster.xyz/flowstatecoop)[X](https://x.com/flowstatecoop)[Telegram](https://t.me/flowstatecoop)
-Sign up for updates
+---
 
-Flow State LCA - © 2025-2026[Term of use](https://flowstate.network/terms)[Privacy policy](https://flowstate.network/privacy)
+If you want, I can replace the manager and funding addresses now (provide the EOA(s) or multisig), add social links, or upload logo/banner assets from the repo into this file.
+
