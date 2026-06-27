@@ -33,8 +33,7 @@ contract IntegrationTest is Test {
             "GoodSave G$",
             "gsG$",
             30 days,
-            100_000 ether,
-            10_000 ether
+            100_000 ether
         );
         strategy = new GoodSaveStrategy(GDOLLAR, CUSD, UNI_ROUTER, AAVE_POOL);
         
